@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://8ngd7524qloe"]
+
+[ext_resource type="Script" path="res://scenes/level1.gd" id="1_fvxxj"]
+[ext_resource type="Texture2D" uid="uid://bhabc4aijq553" path="res://assets/backgrounds-1/backgrounds/level1-jpg-sprite.png" id="1_urlgw"]
+[ext_resource type="PackedScene" uid="uid://1lpp7mk30od7" path="res://scenes/player.tscn" id="2_ag4d7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yii4v"]
+size = Vector2(1295, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye3wp"]
+size = Vector2(854, 20)
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_g2eaf"]
+
+[node name="level1" type="Node2D"]
+script = ExtResource("1_fvxxj")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(-1, 360)
+scale = Vector2(2.00779, 1.95556)
+texture = ExtResource("1_urlgw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(637.5, 0)
+shape = SubResource("RectangleShape2D_yii4v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(643, 719)
+shape = SubResource("RectangleShape2D_yii4v")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1296, 420)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ye3wp")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-16, 400)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ye3wp")
+
+[node name="player" parent="." instance=ExtResource("2_ag4d7")]
+position = Vector2(636, 336)
+
+[node name="villianTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="villians" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamMicrophone_g2eaf")
+autoplay = true
+bus = &"New Bus"
+
+[connection signal="timeout" from="villianTimer" to="." method="_on_villian_timer_timeout"]
