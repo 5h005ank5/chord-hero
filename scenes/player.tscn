@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_24xue"]
 [ext_resource type="Texture2D" uid="uid://byneohpb2d8bw" path="res://assets/icon.svg" id="1_hwr0y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttu35"]
-size = Vector2(129, 127)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6hgn"]
+size = Vector2(130, 129)
 
 [node name="player" type="Node2D"]
 script = ExtResource("1_24xue")
@@ -12,8 +12,10 @@ script = ExtResource("1_24xue")
 [node name="playerLook" type="Sprite2D" parent="."]
 texture = ExtResource("1_hwr0y")
 
-[node name="charaterbody2d" type="CharacterBody2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="charaterbody2d"]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_ttu35")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_x6hgn")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
