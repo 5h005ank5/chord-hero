@@ -17,6 +17,7 @@ config/icon="res://assets/icon.svg"
 
 [audio]
 
+driver/output_latency=1
 driver/enable_input=true
 
 [display]
