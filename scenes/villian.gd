@@ -1,20 +1,21 @@
 extends Node2D
 
  # Preloaded scene for the villains
-var audio = AudioServer.get_bus_effect_instance(2,1)
+var hp :int = 4 
+var audio = AudioServer.get_bus_effect_instance(1,1)
 #var magni = audio.get_magnitude_for_frequency_range(80,85,1)
 var player_position
 # = Vector2(636,336)  # To store the player's position
 @export var spawn_radius = 750.0  # Radius of the spawn circle
 @export var villain_speed = 0.15  # Speed of villains
 @export var spawn_interval = .5  # Interval in seconds for spawning villains
-@export var freq_E2=82.41
-@export var freq_A2=110.00
-@export var freq_D3=146.83
-@export var freq_G3=196.0
-@export var freq_B3=246.94
-@export var freq_E4=329.63
-@export var tollerance = .05
+#@export var freq_E2=82.41
+#@export var freq_A2=110.00
+#@export var freq_D3=146.83
+#@export var freq_G3=196.0
+#@export var freq_B3=246.94
+#@export var freq_E4=329.63
+#@export var tollerance = .05
 var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	var angle = rng.randf_range(0.5,2.50)* 2*PI  # TAU = 2π
@@ -51,3 +52,26 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	villain_speed = 0
+
+#signal damaged(by)
+#signal killed()
+#
+#const HP_MAX = 100.0
+#var hp = HP_MAX
+#
+#func take_damage(impact):
+	#impact = clamp(impact, 0.0, 1.0)
+	#var damage = HP_MAX * impact
+	#var prev_hp = hp
+	#hp -= damage
+	#hp = clamp(hp, 0, HP_MAX)
+#
+	#if prev_hp != hp:
+		#emit_signal("damaged", damage)
+#
+	#if hp <= 0.0:
+		#emit_signal("killed")
+
+
+func _on_audio_stream_player_damage(chord: Variant) -> void:
+	pass # Replace with function body.

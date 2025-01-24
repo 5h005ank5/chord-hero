@@ -5,13 +5,16 @@ var effect
 var recording
 var min = 70
 var max = 410
-var freq = [min,82.41,98,110,123.47,130.81,146.83,164.81,174.61,196,207.65,220,246.94,261.63,277.18,329.63,349.23,369.99,392,max]
-var size = freq.size()
+var temp = [min,82.41,98,110,123.47,130.81,146.83,164.81,174.61,196,207.65,220,246.94,261.63,277.18,293.66,329.63,349.23,369.99,392,max]
+var freq = []
+var size = temp.size()
 var data_max = []
-var min_db = 30
-
+var min_db = 100
+signal damage(chord)
 func _process(delta):
 	var data =[]
+	for i in range(len(temp)):
+		freq.append(temp[i]*4)
 	for i in range(size-2):
 		var low_freq = freq[i]
 		var med_freq = freq[i+1]
@@ -29,6 +32,22 @@ func _process(delta):
 	for i in range(size-2):
 		if data[i] > data_max[i]:
 			data_max[i] = data[i]
+	#for i in range(size-2):
+		#if(data_max[i]>0):
+			#data_max = 1;
+	#if data_max==[0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,1,0,0,0,0]:
+		#emit_signal('damage','Am')
+	#elif data_max==[0,0,0,0,0,1,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0]:
+		#emit_signal('damage','C')
+	#elif data_max==[0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0]:
+		#emit_signal('damage','D')
+	#elif data_max==[0,1,0,0,1,0,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0]:
+		#emit_signal('damage','E')
+	#elif data_max==[0,1,0,0,1,0,0,1,0,1,0,0,1,0,0,0,1,0,0,0,0]:
+		#emit_signal('damage','Em')
+	#elif data_max==[0,0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0]:
+		#emit_signal('damage','G')
+	
 	"""
 	printraw("[")
 	for i in range(size-2):
@@ -50,3 +69,8 @@ func _ready():
 		print(data_max[i],",")
 	print("]")
 	"""
+
+#signal damage(data_max)
+#
+#func chordattack(data_max):
+	#emit_signal("damage",)	
