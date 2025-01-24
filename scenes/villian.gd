@@ -51,3 +51,5 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	villain_speed = 0
+	#$player.health =- 1;
+	#print($player.health)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c04was24faode"
+path="res://.godot/imported/110 Hz Tone Sound Sine Wave [OnlineSound.net].mp3-c86c2f1a6ec809605b5217c6a9681044.mp3str"
+
+[deps]
+
+source_file="res://110 Hz Tone Sound Sine Wave [OnlineSound.net].mp3"
+dest_files=["res://.godot/imported/110 Hz Tone Sound Sine Wave [OnlineSound.net].mp3-c86c2f1a6ec809605b5217c6a9681044.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

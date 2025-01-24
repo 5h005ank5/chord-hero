@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bhabc4aijq553" path="res://assets/backgrounds-1/backgrounds/level1-jpg-sprite.png" id="1_urlgw"]
 [ext_resource type="PackedScene" uid="uid://1lpp7mk30od7" path="res://scenes/player.tscn" id="2_ag4d7"]
 [ext_resource type="PackedScene" uid="uid://ch8c8gocmn2qv" path="res://scenes/villian.tscn" id="4_44plc"]
-[ext_resource type="AudioStream" uid="uid://di2mw5vl0c76j" path="res://98 Hz Frequency Sound (Musical Note G2) [OnlineSound.net].mp3" id="5_envv6"]
 [ext_resource type="Script" path="res://scenes/audio_stream_player.gd" id="5_is14f"]
+[ext_resource type="AudioStream" uid="uid://cqpegaagk0m1o" path="res://WhatsApp Audio 2025-01-20 at 21.09.34_50130ce0.mp3" id="5_k2qj6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yii4v"]
 size = Vector2(1295, 18)
@@ -44,6 +44,9 @@ shape = SubResource("RectangleShape2D_ye3wp")
 [node name="player" parent="." instance=ExtResource("2_ag4d7")]
 position = Vector2(636, 336)
 
+[node name="damageTimer" type="Timer" parent="player"]
+wait_time = 5.0
+
 [node name="villianTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
@@ -54,9 +57,15 @@ autostart = true
 [node name="villian" parent="villians" instance=ExtResource("4_44plc")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_envv6")
+stream = ExtResource("5_k2qj6")
 autoplay = true
 bus = &"Record"
 script = ExtResource("5_is14f")
 
+[node name="emptyArray" type="Timer" parent="AudioStreamPlayer"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="player/damageTimer" to="villians/villian" method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="villianTimer" to="." method="_on_villian_timer_timeout"]
+[connection signal="timeout" from="AudioStreamPlayer/emptyArray" to="AudioStreamPlayer" method="_on_empty_array_timeout"]
